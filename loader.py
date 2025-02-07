@@ -3,8 +3,12 @@ from config.token import TOKEN
 import  sqlite3
 
 
-con = sqlite3.connect('database.db')
+
+con = sqlite3.connect('data/database.db')
 cursor = con.cursor()
+
+
+admin_id = [5413227254]
 
 router = Router()
 dp = Dispatcher()

@@ -1,3 +1,4 @@
+#регистрация
 from aiogram.filters import Command
 from aiogram.types import Message
 from aiogram.fsm.state import StatesGroup, State
@@ -20,11 +21,17 @@ async def fun_start(message: Message, state: FSMContext):
     id_user = message.chat.id
     cursor.execute('select * from users where id=(?)', [id_user])
     data = cursor.fetchall()
-    if not data:
-        await state.set_state((Form_req.fio))
-        await message.answer(text='ДляначалавведитеФИО!',reply_markup=types.ReplyKeyboardRemove())
+    cursor.execute('select * from status')
+    data2 = cursor.fetchall()
+    checker=('1',)
+    if checker == data2[0]:
+        if not data:
+            await state.set_state((Form_req.fio))
+            await message.answer(text='ДляначалавведитеФИО!',reply_markup=types.ReplyKeyboardRemove())
+        else:
+            await message.answer(text='Выужезарегистрировались!')
     else:
-        await message.answer(text='Выужезарегистрировались!')
+        await message.answer(text='регистрациязакончена!')
 
 
 @router.message(Form_req.fio)

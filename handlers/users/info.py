@@ -9,4 +9,4 @@ from random import shuffle
 
 @router.message(F.text =='information')
 async def info_start(message: Message):
-    await message.answer(text='приветствую принимай участия в конкурсе и выйграй автомобиль')
+    await message.answer(text='приветствую, принимай участия в конкурсе и выйграй автомобиль')
